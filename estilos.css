@@ -1,0 +1,42 @@
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+:root{--acento:#FFD84A;--brillo:255 214 60;--tarjeta1:#FFF7D6;--tarjeta2:#FFE9A0;--borde:#F2B705;--tarjetaTxt:#3A2800;--boton1:#FFE56B;--boton2:#F2B705;--botonTxt:#2A1C00;--texto:#FFF7D6;--suelo:#1B2A0F}
+body{margin:0;min-height:100svh;color:var(--texto);font-family:Georgia,serif;text-align:center;overflow-x:hidden;background:#03040F}
+.espacio{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+main{position:relative;z-index:1;min-height:100svh}
+.intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8vw;gap:.4rem}
+.para{margin:0;letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;color:var(--acento)}
+h1{margin:.3rem 0;font-size:clamp(2.2rem,10vw,3.6rem);font-weight:400;font-style:italic;line-height:1.1;text-shadow:0 0 24px rgb(var(--brillo) / .55)}
+.sub{margin:0 0 1.2rem;opacity:.85}
+.boton{font:inherit;font-weight:700;color:var(--botonTxt);background:linear-gradient(var(--boton1),var(--boton2));border:0;border-radius:99px;padding:.85rem 2rem;cursor:pointer;box-shadow:0 0 26px rgb(var(--brillo) / .55)}
+.boton:focus-visible,.saltar:focus-visible,.flor:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.verso{position:absolute;left:0;right:0;top:12vh;margin:0;padding:0 8vw;font-size:clamp(1.3rem,6vw,1.9rem);font-style:italic;opacity:0;text-shadow:0 0 16px rgba(120,160,255,.8)}
+.verso.ver{animation:verso 3.8s ease-in-out both}
+.saltar{position:fixed;right:1rem;bottom:1rem;z-index:3;font:inherit;font-size:.85rem;color:var(--texto);background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.4);border-radius:99px;padding:.45rem 1rem;cursor:pointer}
+/* campo: textos arriba, jardín extendido abajo */
+.campo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:max(8vh,84px) 8vw 0;animation:aparece 2s both}
+.llegada{margin:0;font-size:clamp(1.3rem,5.5vw,1.8rem);font-style:italic;text-shadow:0 0 18px rgb(var(--brillo) / .6)}
+.progreso{margin:1.1rem 0 0;font-size:.9rem;color:var(--acento)}
+.flores{position:absolute;left:0;right:0;bottom:0;height:72svh;overflow:hidden;z-index:0}
+.flores::before{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(transparent,rgba(27,42,15,.55) 55%,var(--suelo));pointer-events:none;z-index:1}
+.flor{position:absolute;width:calc(58px * var(--s,1));aspect-ratio:1/2;padding:0;border:0;background:none;cursor:pointer;transform-origin:50% 100%;-webkit-tap-highlight-color:transparent}
+.flor.mece{animation:sway 4.4s ease-in-out infinite alternate}
+.flor svg{width:100%;height:100%;overflow:visible;display:block}
+.tallo{fill:none;stroke:#3F8F3A;stroke-width:3.2;stroke-linecap:round}.hoja{fill:#4FA84A}
+.petalo{fill:currentColor;stroke:rgba(0,0,0,.28);stroke-width:.7}
+.petalo2{fill:#fff;fill-opacity:.3}
+.centro{fill:currentColor}.centro2{fill:#3B1E06;fill-opacity:.62}.semilla{fill:#fff;fill-opacity:.35}
+.flor.msg svg{filter:drop-shadow(0 0 8px currentColor)}
+.flor.msg::before{content:"";position:absolute;left:50%;top:6%;width:190%;aspect-ratio:1;margin-left:-95%;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,currentColor 55%,transparent),transparent 65%);animation:late 2s ease-in-out infinite;pointer-events:none}
+.flor.leida svg{filter:none}.flor.leida::before{display:none}
+.flor.florece{animation:florece .9s}
+.tarjeta{position:fixed;left:50%;top:50%;z-index:50;width:min(90vw,430px);max-height:82svh;display:flex;flex-direction:column;transform:translate(-50%,-50%);padding:1.4rem 1.3rem 1.2rem;border-radius:20px;background:linear-gradient(var(--tarjeta1),var(--tarjeta2));color:var(--tarjetaTxt);box-shadow:0 0 0 100vmax rgba(2,3,14,.6),0 20px 44px rgba(0,0,0,.6),0 0 0 3px var(--borde);animation:sube .4s ease-out}
+.tarjeta h2{margin:0 0 .6rem;font-style:italic;text-align:center}
+.tarjeta p{margin:0 0 1rem;overflow-y:auto;text-align:left;line-height:1.6;font-size:1.02rem;-webkit-overflow-scrolling:touch}
+.tarjeta .boton{align-self:center;flex:none}
+.final{margin:1rem 0 0;font-size:1.2rem;font-style:italic;color:var(--texto);text-shadow:0 0 16px rgb(var(--brillo) / .8);animation:aparece 1.6s both}
+.completo .llegada{opacity:.4}
+@keyframes verso{0%{opacity:0;transform:translateY(12px)}20%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-12px)}}
+@keyframes aparece{from{opacity:0}}@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}@keyframes late{50%{transform:scale(1.15);opacity:.7}}
+@keyframes florece{40%{transform:scale(1.35) rotate(6deg)}}@keyframes sube{from{opacity:0;transform:translate(-50%,-46%)}}
+@media (prefers-reduced-motion:reduce){.verso.ver{animation:none;opacity:1}.flor,.flor.msg::before,.campo,.final,.tarjeta{animation:none}}
